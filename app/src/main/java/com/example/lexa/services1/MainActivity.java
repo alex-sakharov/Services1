@@ -17,12 +17,12 @@ public class MainActivity extends Activity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             mServiceMessenger = new Messenger(service);
-            Log.d(TAG, "onServiceConnected: " + mServiceMessenger);
+            Log.d(TAG, "onServiceConnected");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            Log.d(TAG, "onServiceDisconnected: ");
+            Log.d(TAG, "onServiceDisconnected");
             mServiceMessenger = null;
         }
     };
@@ -36,12 +36,14 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume");
         bindService(RandomGeneratorService.newIntent(this), mServiceConnection, Context.BIND_IMPORTANT);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause");
         unbindService(mServiceConnection);
     }
 
